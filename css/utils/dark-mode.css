@@ -1,0 +1,29 @@
+/* Dark Mode Specific Styles */
+[data-theme="dark"] .property-card {
+  border-color: var(--border-color);
+}
+
+[data-theme="dark"] .footer {
+  background-color: #1a1a1a;
+}
+
+[data-theme="dark"] .newsletter-input {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+[data-theme="dark"] .search-form {
+  background-color: var(--bg-secondary);
+}
+
+[data-theme="dark"] .property-card-favorite {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+[data-theme="dark"] .property-card-favorite:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+[data-theme="dark"] .location-card,
+[data-theme="dark"] .testimonial-card {
+  background-color: var(--bg-secondary);
+}

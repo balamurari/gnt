@@ -1,0 +1,225 @@
+/* Hero Carousel Styles */
+.hero-carousel {
+  position: relative;
+  border-radius: var(--border-radius-lg);
+  overflow: hidden;
+  margin-bottom: var(--space-xl);
+  box-shadow: var(--shadow-md);
+}
+
+.carousel-inner {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.carousel-item {
+  display: none;
+  width: 100%;
+  backface-visibility: hidden;
+  transition: transform 0.6s ease-in-out;
+}
+
+.carousel-item.active {
+  display: block;
+}
+
+.carousel-item-next,
+.carousel-item-prev {
+  display: block;
+  position: absolute;
+  top: 0;
+}
+
+.carousel-item-next.carousel-item-start,
+.carousel-item-prev.carousel-item-end {
+  transform: translateX(0);
+}
+
+.carousel-item-next,
+.active.carousel-item-end {
+  transform: translateX(100%);
+}
+
+.carousel-item-prev,
+.active.carousel-item-start {
+  transform: translateX(-100%);
+}
+
+.carousel-img {
+  position: relative;
+  height: 400px;
+  width: 100%;
+}
+
+.carousel-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.85);
+}
+
+.carousel-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  background: linear-gradient(90deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0) 100%);
+  padding: var(--space-lg);
+  color: white;
+}
+
+.carousel-text {
+  max-width: 600px;
+}
+
+.property-tag {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 20px;
+  background-color: var(--primary-color);
+  color: white;
+  font-size: var(--font-size-xs);
+  font-weight: 500;
+  margin-bottom: var(--space-sm);
+}
+
+.property-tag.new {
+  background-color: var(--secondary-color);
+}
+
+.property-tag.commercial {
+  background-color: #4CAF50;
+}
+
+.carousel-text h2 {
+  color: white;
+  margin-bottom: var(--space-xs);
+}
+
+.carousel-text h5 {
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: var(--space-md);
+}
+
+.carousel-text p {
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: var(--space-lg);
+}
+
+.carousel-actions {
+  display: flex;
+  gap: var(--space-sm);
+}
+
+/* Carousel Controls */
+.carousel-control-prev,
+.carousel-control-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  width: 50px;
+  height: 50px;
+  background: none;
+  border: none;
+  opacity: 0.8;
+  transition: opacity var(--transition);
+}
+
+.carousel-control-prev {
+  left: 15px;
+}
+
+.carousel-control-next {
+  right: 15px;
+}
+
+.carousel-control-prev:hover,
+.carousel-control-next:hover {
+  opacity: 1;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  width: 40px;
+  height: 40px;
+  background-color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary-color);
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition);
+}
+
+.carousel-control-prev:hover .carousel-control-prev-icon,
+.carousel-control-next:hover .carousel-control-next-icon {
+  transform: scale(1.1);
+  box-shadow: var(--shadow-md);
+}
+
+/* Carousel Indicators */
+.carousel-indicators {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+  z-index: 10;
+}
+
+.carousel-indicator {
+  width: 10px;
+  height: 10px;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  border: none;
+  transition: all var(--transition);
+}
+
+.carousel-indicator.active {
+  width: 24px;
+  background-color: white;
+  border-radius: 8px;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .carousel-img {
+    height: 300px;
+  }
+  
+  .carousel-content {
+    padding: var(--space-md);
+  }
+  
+  .carousel-text h2 {
+    font-size: 1.5rem;
+  }
+  
+  .carousel-text h5 {
+    font-size: 1rem;
+  }
+  
+  .carousel-text p {
+    display: none;
+  }
+}
+
+@media (max-width: 576px) {
+  .carousel-img {
+    height: 250px;
+  }
+  
+  .carousel-control-prev-icon,
+  .carousel-control-next-icon {
+    width: 30px;
+    height: 30px;
+  }
+}
