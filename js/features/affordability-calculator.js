@@ -1,14 +1,27 @@
-// Affordability Calculator Component
+/**
+ * Affordability Calculator Component
+ * This script initializes and manages the EMI calculator functionality
+ */
 
-export function initializeAffordabilityCalculator() {
+// Wait for DOM to fully load
+document.addEventListener('DOMContentLoaded', function() {
+  initializeAffordabilityCalculator();
+});
+
+function initializeAffordabilityCalculator() {
   const calculator = document.querySelector('.affordability-calculator');
-  if (!calculator) return;
+  if (!calculator) {
+    console.error('Affordability calculator not found in the DOM');
+    return;
+  }
   
+  // Get input elements
   const propertyPriceInput = document.getElementById('property-price');
   const downPaymentInput = document.getElementById('down-payment');
   const loanTermInput = document.getElementById('loan-term');
   const interestRateInput = document.getElementById('interest-rate');
   
+  // Get output display elements
   const propertyPriceOutput = document.querySelector('[data-output="property-price"]');
   const downPaymentOutput = document.querySelector('[data-output="down-payment"]');
   const loanTermOutput = document.querySelector('[data-output="loan-term"]');
@@ -18,38 +31,53 @@ export function initializeAffordabilityCalculator() {
   const totalInterestOutput = document.querySelector('[data-output="total-interest"]');
   const totalAmountOutput = document.querySelector('[data-output="total-amount"]');
   
+  // Get chart canvas
   const chartCanvas = document.getElementById('calculator-chart');
   let chart;
   
-  // Initialize chart if canvas exists
-  if (chartCanvas) {
+  // Check if all required elements exist
+  if (!propertyPriceInput || !downPaymentInput || !loanTermInput || !interestRateInput) {
+    console.error('One or more input elements are missing');
+    return;
+  }
+  
+  if (!propertyPriceOutput || !downPaymentOutput || !loanTermOutput || !interestRateOutput) {
+    console.error('One or more output elements are missing');
+    return;
+  }
+  
+  if (!monthlyEMIOutput || !totalInterestOutput || !totalAmountOutput) {
+    console.error('One or more result elements are missing');
+    return;
+  }
+  
+  // Initialize chart if canvas exists and Chart.js is loaded
+  if (chartCanvas && typeof Chart !== 'undefined') {
     initializeChart();
+  } else if (!chartCanvas) {
+    console.error('Chart canvas element not found');
+  } else {
+    console.error('Chart.js is not loaded');
   }
   
   // Set up input event listeners
-  if (propertyPriceInput) {
-    propertyPriceInput.addEventListener('input', updateCalculator);
-    propertyPriceOutput.textContent = formatCurrency(propertyPriceInput.value);
-  }
+  propertyPriceInput.addEventListener('input', updateCalculator);
+  downPaymentInput.addEventListener('input', updateCalculator);
+  loanTermInput.addEventListener('input', updateCalculator);
+  interestRateInput.addEventListener('input', updateCalculator);
   
-  if (downPaymentInput) {
-    downPaymentInput.addEventListener('input', updateCalculator);
-    downPaymentOutput.textContent = `${downPaymentInput.value}%`;
-  }
-  
-  if (loanTermInput) {
-    loanTermInput.addEventListener('input', updateCalculator);
-    loanTermOutput.textContent = `${loanTermInput.value} Years`;
-  }
-  
-  if (interestRateInput) {
-    interestRateInput.addEventListener('input', updateCalculator);
-    interestRateOutput.textContent = `${interestRateInput.value}%`;
-  }
+  // Set initial display values
+  propertyPriceOutput.textContent = formatCurrency(propertyPriceInput.value);
+  downPaymentOutput.textContent = `${downPaymentInput.value}%`;
+  loanTermOutput.textContent = `${loanTermInput.value} Years`;
+  interestRateOutput.textContent = `${interestRateInput.value}%`;
   
   // Initial calculation
   updateCalculator();
   
+  /**
+   * Updates calculator results based on current input values
+   */
   function updateCalculator() {
     // Get values from inputs
     const propertyPrice = parseFloat(propertyPriceInput.value);
@@ -74,9 +102,16 @@ export function initializeAffordabilityCalculator() {
     const monthlyInterestRate = (interestRate / 12) / 100;
     const numberOfPayments = loanTerm * 12;
     
-    const emi = loanAmount * monthlyInterestRate * 
-               Math.pow(1 + monthlyInterestRate, numberOfPayments) / 
-               (Math.pow(1 + monthlyInterestRate, numberOfPayments) - 1);
+    let emi = 0;
+    
+    // Handle edge case where interest rate is 0 or very small
+    if (monthlyInterestRate > 0) {
+      emi = loanAmount * monthlyInterestRate * 
+             Math.pow(1 + monthlyInterestRate, numberOfPayments) / 
+             (Math.pow(1 + monthlyInterestRate, numberOfPayments) - 1);
+    } else {
+      emi = loanAmount / numberOfPayments;
+    }
     
     const totalAmount = emi * numberOfPayments;
     const totalInterest = totalAmount - loanAmount;
@@ -92,6 +127,9 @@ export function initializeAffordabilityCalculator() {
     }
   }
   
+  /**
+   * Initializes the doughnut chart
+   */
   function initializeChart() {
     const ctx = chartCanvas.getContext('2d');
     
@@ -107,9 +145,16 @@ export function initializeAffordabilityCalculator() {
     const monthlyInterestRate = (interestRate / 12) / 100;
     const numberOfPayments = loanTerm * 12;
     
-    const emi = loanAmount * monthlyInterestRate * 
-               Math.pow(1 + monthlyInterestRate, numberOfPayments) / 
-               (Math.pow(1 + monthlyInterestRate, numberOfPayments) - 1);
+    let emi = 0;
+    
+    // Handle edge case where interest rate is 0
+    if (monthlyInterestRate > 0) {
+      emi = loanAmount * monthlyInterestRate * 
+             Math.pow(1 + monthlyInterestRate, numberOfPayments) / 
+             (Math.pow(1 + monthlyInterestRate, numberOfPayments) - 1);
+    } else {
+      emi = loanAmount / numberOfPayments;
+    }
     
     const totalAmount = emi * numberOfPayments;
     const totalInterest = totalAmount - loanAmount;
@@ -153,11 +198,19 @@ export function initializeAffordabilityCalculator() {
     });
   }
   
+  /**
+   * Updates chart data with new values
+   */
   function updateChart(principal, interest) {
+    if (!chart) return;
+    
     chart.data.datasets[0].data = [principal, interest];
     chart.update();
   }
   
+  /**
+   * Formats number as Indian currency
+   */
   function formatCurrency(amount) {
     return new Intl.NumberFormat('en-IN', {
       style: 'currency',

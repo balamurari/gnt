@@ -570,81 +570,6 @@
         </div>
       </section>
       
-      <!-- Affordability Calculator -->
-      <section class="section">
-        <div class="section-header">
-          <h2 class="section-title">
-            <i class="fas fa-calculator"></i> Affordability Calculator
-          </h2>
-          <p>Estimate your EMI and plan your budget</p>
-        </div>
-        
-        <div class="affordability-calculator">
-          <div class="calculator-inputs">
-            <div class="form-group">
-              <div class="range-slider-label">
-                <label>Property Price</label>
-                <span class="range-slider-value" data-output="property-price">₹ 25,00,000</span>
-              </div>
-              <div class="range-slider">
-                <input type="range" id="property-price" min="500000" max="10000000" step="100000" value="2500000">
-              </div>
-            </div>
-            
-            <div class="form-group">
-              <div class="range-slider-label">
-                <label>Down Payment (%)</label>
-                <span class="range-slider-value" data-output="down-payment">20%</span>
-              </div>
-              <div class="range-slider">
-                <input type="range" id="down-payment" min="10" max="50" step="5" value="20">
-              </div>
-            </div>
-            
-            <div class="form-group">
-              <div class="range-slider-label">
-                <label>Loan Term (Years)</label>
-                <span class="range-slider-value" data-output="loan-term">20 Years</span>
-              </div>
-              <div class="range-slider">
-                <input type="range" id="loan-term" min="5" max="30" step="5" value="20">
-              </div>
-            </div>
-            
-            <div class="form-group">
-              <div class="range-slider-label">
-                <label>Interest Rate (%)</label>
-                <span class="range-slider-value" data-output="interest-rate">8.5%</span>
-              </div>
-              <div class="range-slider">
-                <input type="range" id="interest-rate" min="6" max="12" step="0.25" value="8.5">
-              </div>
-            </div>
-          </div>
-          
-          <div class="calculator-results">
-            <div class="result-card">
-              <h5>Monthly EMI</h5>
-              <p class="result-value" data-output="monthly-emi">₹ 21,500</p>
-            </div>
-            
-            <div class="result-card">
-              <h5>Total Interest</h5>
-              <p class="result-value" data-output="total-interest">₹ 16,45,000</p>
-            </div>
-            
-            <div class="result-card">
-              <h5>Total Amount</h5>
-              <p class="result-value" data-output="total-amount">₹ 51,45,000</p>
-            </div>
-          </div>
-          
-          <div class="calculator-chart">
-            <canvas id="calculator-chart" height="250"></canvas>
-          </div>
-        </div>
-      </section>
-      
       <!-- Popular Localities Section -->
       <section class="section">
         <div class="section-header">
@@ -715,93 +640,6 @@
             <h4>Gujjanagundla</h4>
             <p>₹2.8K - 3.9K/sqft</p>
             <span class="location-properties">15+ Properties</span>
-          </div>
-        </div>
-      </section>
-      
-      <!-- Vastu Compliance Demo -->
-      <section class="section">
-        <div class="section-header">
-          <h2 class="section-title">
-            <i class="fas fa-compass"></i> Vastu Compliance Indicator
-          </h2>
-          <p>Sample feature to show Vastu compliance for properties</p>
-        </div>
-        
-        <div class="property-card">
-          <div class="property-card-img">
-            <img src="assets/images/property-6.jpg" alt="Vastu Compliant Villa">
-            <span class="property-card-badge sale">For Sale</span>
-            <button class="property-card-favorite">
-              <i class="far fa-heart"></i>
-            </button>
-            <div class="property-card-media">
-              <i class="fas fa-camera"></i> 12
-            </div>
-          </div>
-          <div class="property-card-body">
-            <div class="property-card-price">
-              <h4>₹95 Lac</h4>
-              <span class="badge bg-primary text-white">Premium</span>
-            </div>
-            <h5 class="property-card-title">Vastu Compliant Villa in amaravathi Road</h5>
-            <div class="property-card-location">
-              <i class="fas fa-map-marker-alt"></i>
-              <span>amaravathi Road, Guntur</span>
-            </div>
-            <div class="property-card-features">
-              <span class="property-card-feature">
-                <i class="fas fa-ruler-combined"></i> 2200 sq.ft
-              </span>
-              <span class="property-card-feature">
-                <i class="fas fa-bed"></i> 4
-              </span>
-              <span class="property-card-feature">
-                <i class="fas fa-bath"></i> 3
-              </span>
-            </div>
-            
-            <!-- Vastu Indicator -->
-            <div class="vastu-indicator">
-              <h4>Vastu Compliance</h4>
-              
-              <div class="vastu-score">
-                <div class="score-circle" data-score="85">
-                  <svg viewBox="0 0 36 36">
-                    <path class="score-bg"
-                      d="M18 2.0845
-                        a 15.9155 15.9155 0 0 1 0 31.831
-                        a 15.9155 15.9155 0 0 1 0 -31.831"
-                      fill="none" stroke="#eee" stroke-width="3" />
-                    <path class="score-fill"
-                      d="M18 2.0845
-                        a 15.9155 15.9155 0 0 1 0 31.831
-                        a 15.9155 15.9155 0 0 1 0 -31.831"
-                      fill="none" stroke="#4CAF50" stroke-width="3" stroke-dasharray="85, 100" />
-                  </svg>
-                  <span class="score-value">85%</span>
-                </div>
-              </div>
-              
-              <div class="vastu-details">
-                <div class="vastu-item positive">
-                  <i class="fas fa-check-circle"></i>
-                  <span>Main door faces North East</span>
-                </div>
-                <div class="vastu-item positive">
-                  <i class="fas fa-check-circle"></i>
-                  <span>Kitchen in Southeast</span>
-                </div>
-                <div class="vastu-item positive">
-                  <i class="fas fa-check-circle"></i>
-                  <span>Master bedroom in Southwest</span>
-                </div>
-                <div class="vastu-item negative">
-                  <i class="fas fa-times-circle"></i>
-                  <span>Toilet placement needs adjustment</span>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </section>
@@ -1075,9 +913,6 @@
       </a>
     </div>
   </div>
-  
-  <!-- Chart.js for Calculator -->
-  <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.0/dist/chart.min.js"></script>
   
   <!-- Main JavaScript -->
   <script src="js/components/dark-mode.js"></script>
