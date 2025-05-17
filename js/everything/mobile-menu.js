@@ -29,9 +29,7 @@ function createMobileMenu() {
   // Create menu content
   menu.innerHTML = `
     <div class="mobile-menu-header">
-      <a href="index.html" class="mobile-menu-logo">
-        <img src="assets/images/logo.webp" alt="Guntur Properties">
-      </a>
+    
       <button class="mobile-menu-close">
         <i class="fas fa-times"></i>
       </button>
@@ -42,20 +40,14 @@ function createMobileMenu() {
           <a href="index.html" class="mobile-menu-link">Home</a>
         </li>
         <li class="mobile-menu-item">
-          <a href="#" class="mobile-menu-link dropdown-toggle">
-            Properties <i class="fas fa-chevron-down"></i>
+          <a href="#" class="mobile-menu-item">
+            Properties 
           </a>
-          <ul class="mobile-submenu">
-            <li><a href="portfolio.html" class="mobile-submenu-link">
-              <i class="fas fa-building"></i> Portfolio
-            </a></li>
-            <li><a href="categories.html" class="mobile-submenu-link">
-              <i class="fas fa-home"></i> Categories
-            </a></li>
-            <li><a href="property-management.html" class="mobile-submenu-link">
-              <i class="fas fa-landmark"></i> Property Management
-            </a></li>
-          </ul>
+        </li>
+         <li class="mobile-menu-item">
+          <a href="#" class="mobile-menu-item">
+            Agents 
+          </a>
         </li>
         <li class="mobile-menu-item">
           <a href="#" class="mobile-menu-link dropdown-toggle">
@@ -94,7 +86,6 @@ function createMobileMenu() {
         </li>
       </ul>
       <div class="mobile-menu-actions">
-        <a href="post-property.html" class="btn btn-primary">Post Property</a>
         <a href="login.html" class="btn btn-outline-primary">Login / Sign Up</a>
       </div>
     </div>

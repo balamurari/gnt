@@ -368,8 +368,7 @@ function createMobileMenu() {
     <div class="mobile-menu">
       <div class="mobile-menu-header">
         <a href="index.html" class="mobile-menu-logo">
-          <img src="assets/images/logo-light.png" alt="Guntur Properties" class="light-logo">
-          <img src="assets/images/logo-dark.png" alt="Guntur Properties" class="dark-logo">
+          <img src="assets\images\logo.webp" alt="Guntur Properties" class="light-logo dark-logo">
         </a>
         <button class="mobile-menu-close">
           <i class="fas fa-times"></i>
@@ -382,26 +381,15 @@ function createMobileMenu() {
           </li>
           <li class="mobile-menu-item">
             <a href="#" class="mobile-menu-link dropdown-toggle">
-              Properties <i class="fas fa-chevron-down"></i>
+              Properties </i>
             </a>
-            <ul class="mobile-submenu">
-              <li class="mobile-submenu-item">
-                <a href="#" class="mobile-submenu-link">
-                  <i class="fas fa-building"></i> Portfolio
-                </a>
-              </li>
-              <li class="mobile-submenu-item">
-                <a href="#" class="mobile-submenu-link">
-                  <i class="fas fa-home"></i> Categories
-                </a>
-              </li>
-              <li class="mobile-submenu-item">
-                <a href="#" class="mobile-submenu-link">
-                  <i class="fas fa-landmark"></i> Property management
-                </a>
-              </li>
-             
-            </ul>
+            
+          </li>
+           <li class="mobile-menu-item">
+            <a href="#" class="mobile-menu-link dropdown-toggle">
+              Agents </i>
+            </a>
+            
           </li>
           <li class="mobile-menu-item">
             <a href="#" class="mobile-menu-link dropdown-toggle">
@@ -470,9 +458,9 @@ function createMobileMenu() {
             </ul>
           </li>  
         </ul>
+       
         <div class="mobile-menu-actions">
-          <a href="#" class="btn btn-primary btn-block">Post Property</a>
-          <a href="login.html" class="btn btn-outline-primary btn-block mt-sm">Login / Sign Up</a>
+          <a href="login.html" class="btn btn-outline-primary btn-block mt-sm">Agent login</a>
         </div>
       </div>
       <div class="mobile-menu-footer">

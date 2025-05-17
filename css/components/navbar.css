@@ -792,7 +792,7 @@ main, .main-content {
 
 @media (max-width: 576px) {
   body {
-    padding-top: calc(var(--mobile-header-height) - 20px);
+    padding-top: calc(var(--mobile-header-height) - 60px);
   }
   
   .hero-carousel {

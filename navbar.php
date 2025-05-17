@@ -26,18 +26,11 @@
           <a href="index.html" class="navbar-link">Home</a>
         </li>
         <li class="navbar-item">
-          <a href="#" class="navbar-link">Properties <i class="fas fa-chevron-down"></i></a>
-          <div class="navbar-dropdown">
-            <a href="portfolio.html" class="dropdown-item">
-              <i class="fas fa-building"></i> Portfolio
-            </a>
-            <a href="categories.html" class="dropdown-item">
-              <i class="fas fa-home"></i> Categories
-            </a>
-            <a href="property-management.html" class="dropdown-item">
-              <i class="fas fa-landmark"></i> Property Management
-            </a>
-          </div>
+          <a href="#" class="navbar-link">Properties </a>
+        </li>
+         <li class="navbar-item">
+          <a href="#" class="navbar-link">Agents </a>
+         
         </li>
         <li class="navbar-item">
           <a href="#" class="navbar-link">About Us <i class="fas fa-chevron-down"></i></a>
@@ -67,8 +60,16 @@
             </a>
           </div>
         </li>
-        <li class="navbar-item">
-          <a href="contact-form.html" class="navbar-link">Contact Us</a>
+         <li class="navbar-item">
+          <a href="#" class="navbar-link">Contact <i class="fas fa-chevron-down"></i></a>
+          <div class="navbar-dropdown">
+            <a href="strategic-marketing.html" class="dropdown-item">
+              <i class="fas fa-chart-line"></i> Contact Us
+            </a>
+            <a href="negotiation.html" class="dropdown-item">
+              <i class="fas fa-handshake"></i> Our office
+            </a>
+          </div>
         </li>
       </ul>
       
@@ -88,9 +89,9 @@
           <i class="fas fa-sun sun-icon"></i>
         </button>
         
-        <!-- Post Property Button -->
+        <!-- Agent Button -->
         <a href="post-property.html" class="post-property-btn">
-          <i class="fas fa-plus-circle"></i> Post Property
+          Agent Login
         </a>
       </div>
     </div>
@@ -117,9 +118,9 @@
       </button>
     </div>
     
-    <!-- Location Selector -->
+    <!-- Location Selector 
     <div class="mobile-header-location">
-      <h3>Guntur <i class="fas fa-chevron-down"></i></h3>
+      <h3>Guntur </h3>
       <div class="location-dropdown">
         <ul>
           <li>Guntur</li>
@@ -127,22 +128,22 @@
           <li>Amaravati</li>
           <li>Narasaraopet</li>
         </ul>
-      </div>
-    </div>
+      </div> 
+    </div>-->
     
     <!-- Search 
     <div class="mobile-search">
       <input type="text" placeholder="Search properties in Guntur...">
     </div>-->
     
-    <!-- Category Tabs -->
+    <!-- Category Tabs
     <div class="mobile-category-tabs">
       <a href="#" class="category-tab active">Buy</a>
       <a href="#" class="category-tab">Rent</a>
       <a href="#" class="category-tab">New Projects</a>
       <a href="#" class="category-tab">Commercial</a>
       <a href="#" class="category-tab">PG/Co-living</a>
-    </div>
+    </div> -->
   </header>
 
  
