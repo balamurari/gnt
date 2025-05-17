@@ -277,7 +277,7 @@
         </div>
       </section>
       
-      <!-- Similar Properties Demo -->
+      <!-- Similar Properties Demo 
       <section class="section">
         <div class="section-header">
           <h2 class="section-title">
@@ -319,11 +319,9 @@
               </span>
             </div>
             
-            <!-- Similar Properties Section -->
             <div class="similar-properties">
               <h5>Similar Properties You May Like</h5>
               <div class="similar-properties-slider">
-                <!-- Similar Property 1 -->
                 <div class="similar-property-card">
                   <div class="similar-property-img">
                     <img src="assets/images/similar-1.webp" alt="Similar Property 1">
@@ -334,7 +332,6 @@
                   </div>
                 </div>
                 
-                <!-- Similar Property 2 -->
                 <div class="similar-property-card">
                   <div class="similar-property-img">
                     <img src="assets/images/similar-2.webp" alt="Similar Property 2">
@@ -345,7 +342,6 @@
                   </div>
                 </div>
                 
-                <!-- Similar Property 3 -->
                 <div class="similar-property-card">
                   <div class="similar-property-img">
                     <img src="assets/images/similar-3.webp" alt="Similar Property 3">
@@ -356,7 +352,6 @@
                   </div>
                 </div>
                 
-                <!-- Similar Property 4 -->
                 <div class="similar-property-card">
                   <div class="similar-property-img">
                     <img src="assets/images/similar-4.webp" alt="Similar Property 4">
@@ -371,7 +366,7 @@
           </div>
         </div>
       </section>
-      
+-->
       <!-- Popular Localities Section -->
       <section class="section">
         <div class="section-header">
