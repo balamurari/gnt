@@ -190,7 +190,8 @@
   
   /* Content padding for mobile */
   main {
-    padding-bottom: 70px;
+    padding-bottom: 0px;
+    padding-top: 40px;
   }
   
   /* Adjust Social Hub position for mobile */

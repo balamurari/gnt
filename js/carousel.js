@@ -1,272 +1,293 @@
-// Navbar Component
+/**
+ * Simple cross-fade carousel implementation
+ * No black flash during transitions
+ */
+document.addEventListener('DOMContentLoaded', function() {
+  initCarousel();
+});
 
-export function initializeNavbar() {
-  // Desktop Navbar Functionality
-  const dropdownItems = document.querySelectorAll('.navbar-item');
+function initCarousel() {
+  // Elements
+  const carousel = document.querySelector('.hero-carousel');
+  if (!carousel) return;
   
-  dropdownItems.forEach(item => {
-    const link = item.querySelector('.navbar-link');
-    const dropdown = item.querySelector('.navbar-dropdown');
-    
-    if (!dropdown) return;
-    
-    // For desktop: Show dropdown on hover
-    if (window.innerWidth >= 992) {
-      item.addEventListener('mouseenter', () => {
-        dropdown.style.opacity = '1';
-        dropdown.style.visibility = 'visible';
-        dropdown.style.transform = 'translateY(0)';
-      });
-      
-      item.addEventListener('mouseleave', () => {
-        dropdown.style.opacity = '0';
-        dropdown.style.visibility = 'hidden';
-        dropdown.style.transform = 'translateY(10px)';
-      });
-    }
-    
-    // For mobile: Toggle dropdown on click
-    if (link) {
-      link.addEventListener('click', (e) => {
-        if (window.innerWidth < 992 && dropdown) {
-          e.preventDefault();
-          dropdown.classList.toggle('show');
-        }
-      });
-    }
-  });
+  const slides = carousel.querySelectorAll('.carousel-item');
+  const indicators = carousel.querySelectorAll('.carousel-indicator');
+  const prevBtn = carousel.querySelector('.carousel-control-prev');
+  const nextBtn = carousel.querySelector('.carousel-control-next');
   
-  // Mobile Menu Toggle
-  const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
-  const mobileMenu = document.querySelector('.mobile-menu');
+  // Variables
+  let currentIndex = 0;
+  let interval;
+  let isAnimating = false;
+  const autoplayDelay = 5000; // Time between slide changes (ms)
+  const fadeTime = 800; // Fade transition time (ms)
   
-  if (mobileMenuToggle && mobileMenu) {
-    mobileMenuToggle.addEventListener('click', () => {
-      mobileMenuToggle.classList.toggle('active');
-      mobileMenu.classList.toggle('show');
-      
-      // Prevent body scroll when menu is open
-      document.body.classList.toggle('menu-open');
-    });
-  }
+  // Show initial slide
+  showSlide(currentIndex);
   
-  // Mobile Category Tabs
-  const categoryTabs = document.querySelectorAll('.category-tab');
+  // Initialize autoplay
+  startAutoplay();
   
-  categoryTabs.forEach(tab => {
-    tab.addEventListener('click', (e) => {
-      e.preventDefault();
-      
-      // Remove active class from all tabs
-      categoryTabs.forEach(t => t.classList.remove('active'));
-      
-      // Add active class to clicked tab
-      tab.classList.add('active');
-      
-      // Here you would typically update content based on selected category
-      const category = tab.textContent.trim().toLowerCase();
-      updateMobileSearchPlaceholder(category);
+  // Add event listeners
+  prevBtn.addEventListener('click', showPrevSlide);
+  nextBtn.addEventListener('click', showNextSlide);
+  
+  // Set up indicators
+  indicators.forEach((indicator, index) => {
+    indicator.addEventListener('click', () => {
+      goToSlide(index);
     });
   });
   
-  // Update search placeholder based on category
-  function updateMobileSearchPlaceholder(category) {
-    const searchInput = document.querySelector('.mobile-search input');
-    if (!searchInput) return;
+  // Pause autoplay on hover
+  carousel.addEventListener('mouseenter', pauseAutoplay);
+  carousel.addEventListener('mouseleave', startAutoplay);
+  
+  // Add touch/swipe support
+  let touchStartX = 0;
+  carousel.addEventListener('touchstart', function(e) {
+    touchStartX = e.changedTouches[0].clientX;
+  }, { passive: true });
+  
+  carousel.addEventListener('touchend', function(e) {
+    const touchEndX = e.changedTouches[0].clientX;
+    const diff = touchStartX - touchEndX;
     
-    const location = document.querySelector('.mobile-header-location h3').textContent.trim().split(' ')[0];
-    
-    switch(category) {
-      case 'buy':
-        searchInput.placeholder = `Search to buy in ${location}...`;
-        break;
-      case 'rent':
-        searchInput.placeholder = `Search to rent in ${location}...`;
-        break;
-      case 'new projects':
-        searchInput.placeholder = `Search new projects in ${location}...`;
-        break;
-      case 'commercial':
-        searchInput.placeholder = `Search commercial in ${location}...`;
-        break;
-      default:
-        searchInput.placeholder = `Search properties in ${location}...`;
-    }
-  }
-  
-  // Mobile Bottom Navigation
-  const navItems = document.querySelectorAll('.mobile-navbar-link');
-  
-  navItems.forEach(item => {
-    item.addEventListener('click', () => {
-      // Only update if not already active
-      if (!item.classList.contains('active')) {
-        // Remove active class from all items
-        navItems.forEach(i => i.classList.remove('active'));
-        
-        // Add active class to clicked item
-        item.classList.add('active');
-      }
-    });
-  });
-  
-  // Handle location selector
-  const locationSelector = document.querySelector('.mobile-header-location');
-  const locationDropdown = document.createElement('div');
-  locationDropdown.className = 'location-dropdown';
-  locationDropdown.innerHTML = `
-    <ul>
-      <li data-location="Guntur">Guntur</li>
-      <li data-location="Vijayawada">Vijayawada</li>
-      <li data-location="Amaravati">Amaravati</li>
-      <li data-location="Hyderabad">Hyderabad</li>
-    </ul>
-  `;
-  
-  // Add dropdown to the DOM but hidden
-  if (locationSelector) {
-    locationSelector.appendChild(locationDropdown);
-    
-    // Toggle dropdown on click
-    locationSelector.addEventListener('click', (e) => {
-      e.stopPropagation();
-      locationDropdown.classList.toggle('show');
-    });
-    
-    // Handle location selection
-    const locationItems = locationDropdown.querySelectorAll('li');
-    locationItems.forEach(item => {
-      item.addEventListener('click', () => {
-        const location = item.getAttribute('data-location');
-        locationSelector.querySelector('h3').innerHTML = `${location} <i class="fas fa-chevron-down"></i>`;
-        locationDropdown.classList.remove('show');
-        
-        // Update search placeholder
-        const activeCategory = document.querySelector('.category-tab.active');
-        if (activeCategory) {
-          updateMobileSearchPlaceholder(activeCategory.textContent.trim().toLowerCase());
-        }
-      });
-    });
-    
-    // Close dropdown when clicking outside
-    document.addEventListener('click', () => {
-      locationDropdown.classList.remove('show');
-    });
-  }
-  
-  // Add active class to current page nav link
-  const currentPath = window.location.pathname;
-  const navLinks = document.querySelectorAll('.navbar-link');
-  
-  navLinks.forEach(link => {
-    const href = link.getAttribute('href');
-    if (href === currentPath || (currentPath === '/' && href === 'index.html')) {
-      link.classList.add('active');
-    }
-  });
-  
-  // Handle navbar color change on scroll
-  const navbar = document.querySelector('.navbar');
-  
-  if (navbar) {
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 50) {
-        navbar.classList.add('navbar-scrolled');
+    // Detect swipe (with threshold)
+    if (Math.abs(diff) > 50) {
+      if (diff > 0) {
+        showNextSlide();
       } else {
-        navbar.classList.remove('navbar-scrolled');
+        showPrevSlide();
+      }
+    }
+  }, { passive: true });
+  
+  /**
+   * Show a specific slide by index
+   */
+  function showSlide(index) {
+    if (isAnimating) return;
+    
+    // Set current index
+    currentIndex = index;
+    
+    // Update slides
+    slides.forEach((slide, i) => {
+      if (i === currentIndex) {
+        slide.classList.add('active');
+      } else {
+        slide.classList.remove('active', 'next', 'prev');
+      }
+    });
+    
+    // Update indicators
+    updateIndicators();
+  }
+  
+  /**
+   * Update indicator states
+   */
+  function updateIndicators() {
+    indicators.forEach((indicator, index) => {
+      if (index === currentIndex) {
+        indicator.classList.add('active');
+        indicator.setAttribute('aria-current', 'true');
+      } else {
+        indicator.classList.remove('active');
+        indicator.removeAttribute('aria-current');
       }
     });
   }
   
-  // Handle search form in navbar
-  const navbarSearch = document.querySelector('.navbar-search');
-  
-  if (navbarSearch) {
-    const searchInput = navbarSearch.querySelector('input');
-    const searchButton = navbarSearch.querySelector('button');
+  /**
+   * Show next slide with cross-fade animation
+   */
+  function showNextSlide() {
+    if (isAnimating) return;
+    isAnimating = true;
     
-    searchButton.addEventListener('click', () => {
-      if (searchInput.value.trim() !== '') {
-        // Redirect to search results page with query parameter
-        window.location.href = `search-results.html?q=${encodeURIComponent(searchInput.value.trim())}`;
-      }
-    });
+    // Get current and next slide
+    const currentSlide = slides[currentIndex];
+    const nextIndex = (currentIndex + 1) % slides.length;
+    const nextSlide = slides[nextIndex];
     
-    // Submit on Enter key
-    searchInput.addEventListener('keypress', (e) => {
-      if (e.key === 'Enter' && searchInput.value.trim() !== '') {
-        window.location.href = `search-results.html?q=${encodeURIComponent(searchInput.value.trim())}`;
-      }
-    });
+    // Set next slide below current with opacity 0
+    nextSlide.style.opacity = '0';
+    nextSlide.classList.add('active');
+    nextSlide.classList.add('next');
+    
+    // Ensure browser processes these style changes before the transition
+    setTimeout(function() {
+      // Fade in next slide
+      nextSlide.style.transition = `opacity ${fadeTime}ms ease-in-out`;
+      nextSlide.style.opacity = '1';
+      
+      // After transition completes
+      setTimeout(function() {
+        // Remove active class from previous slide
+        currentSlide.classList.remove('active');
+        currentSlide.style.opacity = '';
+        nextSlide.classList.remove('next');
+        nextSlide.style.transition = '';
+        nextSlide.style.opacity = '';
+        
+        // Update current index
+        currentIndex = nextIndex;
+        updateIndicators();
+        isAnimating = false;
+      }, fadeTime);
+    }, 20);
+    
+    // Reset autoplay
+    resetAutoplay();
   }
-}
-
-// Export function to create a mobile menu programmatically
-export function createMobileMenu(categories) {
-  // Create menu structure
-  const menuHTML = `
-    <div class="mobile-menu">
-      <div class="mobile-menu-header">
-        <a href="index.html" class="mobile-menu-logo">
-          <img src="assets/images/logo-light.png" alt="Guntur Properties" class="light-logo">
-          <img src="assets/images/logo-dark.png" alt="Guntur Properties" class="dark-logo">
-        </a>
-        <button class="mobile-menu-close">
-          <i class="fas fa-times"></i>
-        </button>
-      </div>
-      <div class="mobile-menu-body">
-        <ul class="mobile-menu-nav">
-          <li class="mobile-menu-item">
-            <a href="index.html" class="mobile-menu-link">Home</a>
-          </li>
-          ${categories.map(category => `
-            <li class="mobile-menu-item">
-              <a href="#" class="mobile-menu-link dropdown-toggle">
-                ${category.name} <i class="fas fa-chevron-down"></i>
-              </a>
-              ${category.items ? `
-                <ul class="mobile-submenu">
-                  ${category.items.map(item => `
-                    <li class="mobile-submenu-item">
-                      <a href="${item.url}" class="mobile-submenu-link">
-                        <i class="${item.icon}"></i> ${item.name}
-                      </a>
-                    </li>
-                  `).join('')}
-                </ul>
-              ` : ''}
-            </li>
-          `).join('')}
-          <li class="mobile-menu-item">
-            <a href="contact.html" class="mobile-menu-link">Contact Us</a>
-          </li>
-        </ul>
-        <div class="mobile-menu-actions">
-          <a href="#" class="btn btn-primary btn-block">Post Property</a>
-          <a href="login.html" class="btn btn-outline-primary btn-block mt-sm">Login / Sign Up</a>
-        </div>
-      </div>
-      <div class="mobile-menu-footer">
-        <div class="social-links">
-          <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
-          <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
-          <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
-          <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
-        </div>
-        <p>© 2025 Guntur Properties</p>
-      </div>
-    </div>
-  `;
   
-  const tempDiv = document.createElement('div');
-  tempDiv.innerHTML = menuHTML;
+  /**
+   * Show previous slide with cross-fade animation
+   */
+  function showPrevSlide() {
+    if (isAnimating) return;
+    isAnimating = true;
+    
+    // Get current and prev slide
+    const currentSlide = slides[currentIndex];
+    const prevIndex = (currentIndex - 1 + slides.length) % slides.length;
+    const prevSlide = slides[prevIndex];
+    
+    // Set prev slide below current with opacity 0
+    prevSlide.style.opacity = '0';
+    prevSlide.classList.add('active');
+    prevSlide.classList.add('prev');
+    
+    // Ensure browser processes these style changes before the transition
+    setTimeout(function() {
+      // Fade in prev slide
+      prevSlide.style.transition = `opacity ${fadeTime}ms ease-in-out`;
+      prevSlide.style.opacity = '1';
+      
+      // After transition completes
+      setTimeout(function() {
+        // Remove active class from previous slide
+        currentSlide.classList.remove('active');
+        currentSlide.style.opacity = '';
+        prevSlide.classList.remove('prev');
+        prevSlide.style.transition = '';
+        prevSlide.style.opacity = '';
+        
+        // Update current index
+        currentIndex = prevIndex;
+        updateIndicators();
+        isAnimating = false;
+      }, fadeTime);
+    }, 20);
+    
+    // Reset autoplay
+    resetAutoplay();
+  }
   
-  document.body.appendChild(tempDiv.firstElementChild);
+  /**
+   * Go to specific slide
+   */
+  function goToSlide(index) {
+    if (index === currentIndex || isAnimating) return;
+    
+    // Determine direction
+    if (index > currentIndex) {
+      // Going forward
+      isAnimating = true;
+      
+      // Get current and target slide
+      const currentSlide = slides[currentIndex];
+      const targetSlide = slides[index];
+      
+      // Set target slide below current with opacity 0
+      targetSlide.style.opacity = '0';
+      targetSlide.classList.add('active');
+      targetSlide.classList.add('next');
+      
+      // Ensure browser processes these style changes before the transition
+      setTimeout(function() {
+        // Fade in target slide
+        targetSlide.style.transition = `opacity ${fadeTime}ms ease-in-out`;
+        targetSlide.style.opacity = '1';
+        
+        // After transition completes
+        setTimeout(function() {
+          // Remove active class from previous slide
+          currentSlide.classList.remove('active');
+          currentSlide.style.opacity = '';
+          targetSlide.classList.remove('next');
+          targetSlide.style.transition = '';
+          targetSlide.style.opacity = '';
+          
+          // Update current index
+          currentIndex = index;
+          updateIndicators();
+          isAnimating = false;
+        }, fadeTime);
+      }, 20);
+    } else {
+      // Going backward
+      isAnimating = true;
+      
+      // Get current and target slide
+      const currentSlide = slides[currentIndex];
+      const targetSlide = slides[index];
+      
+      // Set target slide below current with opacity 0
+      targetSlide.style.opacity = '0';
+      targetSlide.classList.add('active');
+      targetSlide.classList.add('prev');
+      
+      // Ensure browser processes these style changes before the transition
+      setTimeout(function() {
+        // Fade in target slide
+        targetSlide.style.transition = `opacity ${fadeTime}ms ease-in-out`;
+        targetSlide.style.opacity = '1';
+        
+        // After transition completes
+        setTimeout(function() {
+          // Remove active class from previous slide
+          currentSlide.classList.remove('active');
+          currentSlide.style.opacity = '';
+          targetSlide.classList.remove('prev');
+          targetSlide.style.transition = '';
+          targetSlide.style.opacity = '';
+          
+          // Update current index
+          currentIndex = index;
+          updateIndicators();
+          isAnimating = false;
+        }, fadeTime);
+      }, 20);
+    }
+    
+    // Reset autoplay
+    resetAutoplay();
+  }
   
-  // Initialize mobile menu functionality
-  initializeNavbar();
+  /**
+   * Start autoplay for the carousel
+   */
+  function startAutoplay() {
+    clearInterval(interval);
+    interval = setInterval(showNextSlide, autoplayDelay);
+  }
   
-  return document.querySelector('.mobile-menu');
+  /**
+   * Pause the autoplay
+   */
+  function pauseAutoplay() {
+    clearInterval(interval);
+  }
+  
+  /**
+   * Reset the autoplay timer
+   */
+  function resetAutoplay() {
+    pauseAutoplay();
+    startAutoplay();
+  }
 }
