@@ -23,7 +23,7 @@
       <!-- Main Menu -->
       <ul class="navbar-menu">
         <li class="navbar-item">
-          <a href="index.html" class="navbar-link">Home</a>
+          <a href="index.php" class="navbar-link">Home</a>
         </li>
         <li class="navbar-item">
           <a href="#" class="navbar-link">Properties </a>
@@ -35,13 +35,13 @@
         <li class="navbar-item">
           <a href="#" class="navbar-link">About Us <i class="fas fa-chevron-down"></i></a>
           <div class="navbar-dropdown">
-            <a href="our-story.html" class="dropdown-item">
+            <a href="AboutUsOurStory.php" class="dropdown-item">
               <i class="fas fa-book-open"></i> Our Story
             </a>
-            <a href="our-work.html" class="dropdown-item">
+            <a href="AboutUsOurWork.php" class="dropdown-item">
               <i class="fas fa-briefcase"></i> Our Work
             </a>
-            <a href="our-clients.html" class="dropdown-item">
+            <a href="AboutUsOurClients.php" class="dropdown-item">
               <i class="fas fa-users"></i> Our Clients
             </a>
           </div>

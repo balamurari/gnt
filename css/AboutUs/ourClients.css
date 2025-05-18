@@ -1,0 +1,436 @@
+/* our-clients.css */
+
+/* Variables for colors matching the provided theme */
+:root {
+    --primary-color: #3f51b5;
+    --primary-light: #757de8;
+    --primary-dark: #002984;
+    --text-light: #757575;
+    --text-dark: #333333;
+    --background-light: #f5f5f5;
+    --background-white: #ffffff;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --border-color: #e0e0e0;
+}
+
+/* General Container Styling */
+.our-clients-container {
+    max-width: 1200px;
+    margin: 30px auto;
+    padding: 0 15px;
+    font-family: 'Roboto', Arial, sans-serif;
+    color: var(--text-dark);
+}
+
+/* Header Section */
+.clients-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.icon-title {
+    display: flex;
+    align-items: center;
+}
+
+.clients-icon {
+    color: var(--primary-color);
+    font-size: 24px;
+    margin-right: 10px;
+}
+
+.clients-header h1 {
+    font-size: 28px;
+    margin: 0;
+    color: var(--text-dark);
+    font-weight: 600;
+}
+
+.view-all {
+    color: var(--primary-color);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.view-all:hover {
+    color: var(--primary-light);
+}
+
+.view-all i {
+    margin-left: 5px;
+}
+
+/* Introduction Section */
+.clients-intro {
+    margin-bottom: 40px;
+    text-align: center;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.clients-intro p {
+    font-size: 18px;
+    line-height: 1.6;
+    color: var(--text-light);
+}
+
+/* Trust Metrics Section */
+.trust-metrics {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 50px;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.metric-item {
+    flex: 1;
+    min-width: 200px;
+    background-color: var(--background-white);
+    border-radius: 6px;
+    box-shadow: 0 3px 10px var(--shadow-color);
+    padding: 25px;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.metric-item:hover {
+    transform: translateY(-5px);
+}
+
+.metric-number {
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+
+.metric-label {
+    color: var(--text-light);
+    font-size: 16px;
+}
+
+/* Testimonials Section */
+.testimonials-section {
+    margin-bottom: 50px;
+}
+
+.testimonials-section h2 {
+    text-align: center;
+    color: var(--primary-color);
+    margin-bottom: 30px;
+    font-size: 24px;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.testimonials-section h2:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 2px;
+    background-color: var(--primary-color);
+}
+
+.testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 25px;
+}
+
+.testimonial-card {
+    background-color: var(--background-white);
+    border-radius: 6px;
+    box-shadow: 0 3px 10px var(--shadow-color);
+    padding: 25px;
+    transition: transform 0.3s ease;
+}
+
+.testimonial-card:hover {
+    transform: translateY(-5px);
+}
+
+.testimonial-quote {
+    position: relative;
+    margin-bottom: 20px;
+    padding-left: 25px;
+}
+
+.testimonial-quote i {
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-size: 18px;
+    color: var(--primary-light);
+    opacity: 0.7;
+}
+
+.testimonial-quote p {
+    font-style: italic;
+    color: var(--text-light);
+    margin: 0;
+    line-height: 1.6;
+}
+
+.testimonial-author {
+    display: flex;
+    align-items: center;
+}
+
+.author-image {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 15px;
+    border: 2px solid var(--primary-light);
+}
+
+.author-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.author-info h4 {
+    margin: 0 0 5px 0;
+    font-size: 16px;
+}
+
+.author-info p {
+    margin: 0;
+    color: var(--text-light);
+    font-size: 14px;
+}
+
+/* Client Types Section */
+.client-types {
+    margin-bottom: 50px;
+}
+
+.client-types h2 {
+    text-align: center;
+    color: var(--primary-color);
+    margin-bottom: 30px;
+    font-size: 24px;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.client-types h2:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 2px;
+    background-color: var(--primary-color);
+}
+
+.types-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.type-card {
+    background-color: var(--background-white);
+    border-radius: 6px;
+    box-shadow: 0 3px 10px var(--shadow-color);
+    padding: 25px;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.type-card:hover {
+    transform: translateY(-5px);
+}
+
+.type-icon {
+    font-size: 30px;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+}
+
+.type-card h3 {
+    margin: 0 0 10px 0;
+    font-size: 18px;
+}
+
+.type-card p {
+    margin: 0;
+    color: var(--text-light);
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+/* Client Logos Section */
+.client-logos {
+    margin-bottom: 50px;
+    background-color: var(--background-light);
+    padding: 40px;
+    border-radius: 6px;
+}
+
+.client-logos h2 {
+    text-align: center;
+    color: var(--primary-color);
+    margin-bottom: 30px;
+    font-size: 24px;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.client-logos h2:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 2px;
+    background-color: var(--primary-color);
+}
+
+.logos-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 25px;
+    align-items: center;
+}
+
+.logo-item {
+    flex: 1;
+    min-width: 150px;
+    max-width: 200px;
+    height: 80px;
+    background-color: var(--background-white);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+    transition: transform 0.3s ease;
+}
+
+.logo-item:hover {
+    transform: scale(1.05);
+}
+
+.logo-item img {
+    max-width: 100%;
+    max-height: 100%;
+    filter: grayscale(100%);
+    opacity: 0.7;
+    transition: filter 0.3s ease, opacity 0.3s ease;
+}
+
+.logo-item:hover img {
+    filter: grayscale(0%);
+    opacity: 1;
+}
+
+/* Client CTA Section */
+.client-cta {
+    text-align: center;
+    background-color: var(--primary-color);
+    color: white;
+    padding: 40px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+}
+
+.client-cta h2 {
+    margin: 0 0 15px 0;
+    font-size: 24px;
+}
+
+.client-cta p {
+    margin: 0 0 25px 0;
+    font-size: 16px;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.cta-button {
+    display: inline-block;
+    padding: 12px 30px;
+    background-color: white;
+    color: var(--primary-color);
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.cta-button:hover {
+    background-color: var(--background-light);
+    transform: scale(1.05);
+}
+
+/* Responsive Styles */
+@media screen and (max-width: 768px) {
+    .clients-header h1 {
+        font-size: 24px;
+    }
+    
+    .clients-intro p {
+        font-size: 16px;
+    }
+    
+    .metric-item {
+        flex: 0 0 calc(50% - 10px);
+    }
+    
+    .logo-item {
+        flex: 0 0 calc(33.33% - 15px);
+    }
+    
+    .testimonials-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .clients-header h1 {
+        font-size: 22px;
+    }
+    
+    .metric-item {
+        flex: 0 0 100%;
+    }
+    
+    .logo-item {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+    
+    .client-cta {
+        padding: 30px 20px;
+    }
+    
+    .cta-button {
+        width: 100%;
+        padding: 12px 20px;
+    }
+}
+
+/* Smooth scroll behavior */
+html {
+    scroll-behavior: smooth;
+}
