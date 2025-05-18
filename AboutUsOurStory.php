@@ -130,7 +130,7 @@ include_once('navbar.php');
     </div>
 </div>
 
-<script src="js\AboutUsOurStory.js" ></script>
+<script src="js\AboutUs\OurStory.js" ></script>
 
 <?php
 // Include footer
