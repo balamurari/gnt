@@ -34,7 +34,7 @@
         <h3 class="search-form-title">Find Your Dream Property</h3>
         <form>
           <div class="search-form-row">
-            <div class="form-group">
+            <!-- <div class="form-group">
               <label class="form-label">Looking To</label>
               <div class="custom-select">
                 <select>
@@ -42,7 +42,7 @@
                   <option>Rent</option>
                 </select>
               </div>
-            </div>
+            </div> -->
             
             <div class="form-group">
               <label class="form-label">Property Type</label>
@@ -99,7 +99,7 @@
               </div>
             </div>
             
-            <div class="form-group">
+            <!-- <div class="form-group">
               <label class="form-label">Possession Status</label>
               <div class="custom-select">
                 <select>
@@ -108,7 +108,7 @@
                   <option>Under Construction</option>
                 </select>
               </div>
-            </div>
+            </div> -->
           </div>
           
           <div class="search-form-submit">
