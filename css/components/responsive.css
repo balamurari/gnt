@@ -206,7 +206,7 @@
   }
   
   .search-form-row {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr
   }
   
   /* Property cards for mobile */

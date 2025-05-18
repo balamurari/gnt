@@ -109,7 +109,14 @@
   
   .search-form-row {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;  /* Keep horizontal layout */
+    flex-wrap: wrap;
+    gap: var(--space-sm); /* Smaller gap on mobile */
+  }
+  
+  .search-form-row > * {
+    flex: 0 0 calc(50% - var(--space-sm) / 2);
+    width: calc(50% - var(--space-sm) / 2);
   }
   
   .search-form-submit {
