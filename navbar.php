@@ -49,14 +49,11 @@
         <li class="navbar-item">
           <a href="#" class="navbar-link">Services <i class="fas fa-chevron-down"></i></a>
           <div class="navbar-dropdown">
-            <a href="strategic-marketing.html" class="dropdown-item">
-              <i class="fas fa-chart-line"></i> Strategic Marketing
+            <a href="digitalMarketing.php" class="dropdown-item">
+              <i class="fas fa-chart-line"></i> Digital Marketing
             </a>
-            <a href="negotiation.html" class="dropdown-item">
-              <i class="fas fa-handshake"></i> Negotiation
-            </a>
-            <a href="closing-success.html" class="dropdown-item">
-              <i class="fas fa-check-circle"></i> Closing Success
+            <a href="brandPromotion.php" class="dropdown-item">
+              <i class="fas fa-handshake"></i> Brand Promotion
             </a>
           </div>
         </li>
